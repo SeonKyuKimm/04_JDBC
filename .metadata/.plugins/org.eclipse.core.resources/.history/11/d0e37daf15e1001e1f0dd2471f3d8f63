@@ -1,0 +1,52 @@
+package edu.kh.jdbc1.model.vo;
+
+public class EmpPractice {
+	
+	
+	
+	private String departmentName;
+	private int point;
+	
+	public EmpPractice() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public EmpPractice(String category, String departmentName, int point) {
+		super();
+		this.category = category;
+		this.departmentName = departmentName;
+		this.point = point;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getDepartmentName() {
+		return departmentName;
+	}
+
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
+	}
+
+	public int getPoint() {
+		return point;
+	}
+
+	public void setPoint(int point) {
+		this.point = point;
+	}
+
+	@Override
+	public String toString() {
+		return "EmpPractice [category=" + category + ", departmentName=" + departmentName + ", point=" + point + "]";
+	}
+	
+	
+	
+}

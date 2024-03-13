@@ -1,0 +1,77 @@
+package edu.kh.jdbc1;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class Practice1 {
+
+	public static void main(String[] args) {
+		
+		// 전지연 사원이 속해있는 부서원들을 조회하시오
+		// 사번 사원명 전화번호 고용일 부서명 
+	
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+	
+		try {
+			
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+			String url = "jdbc:oracle:thin:@localhost:1521:XE";
+			String user = "kh_ksk";
+			String pw ="kh1234";
+			
+			
+			conn = DriverManager.getConnection( url, user, pw );
+			
+			String sql ="SELECT EMP_NO, EMP_NAME, PHONE, HIRE_DATE, DEPT_TITLE"
+					+  " FROM EMPLOYEE"
+					+ " NATURAL JOIN DEPARTMENT "
+					+ " WHERE DEPT_TITLE = (SELECT DEPT_TITLE"
+										+ "	FROM DEPARTMENT"
+					+ "	WHERE DEPT_ID  = 'D1')";
+			
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			while (rs.next()) {
+				
+				String empNo = rs.getString("EMP_NO");
+				String empName = rs.getString("EMP_NAME");
+				String phone = rs.getString("PHONE");
+				String hireDate = rs.getString("HIRE_DATE");
+				String deptTitle = rs.getString("DEPT_TITLE"); 
+				
+				System.out.printf("주민번호 %s / 이름 %d / 연락처 %s / 입사일 %d / 부서명 %d",
+									empNo, empName,phone,hireDate,deptTitle);
+				
+			}
+	
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			
+			try {
+				if(rs != null) rs.close();
+				if(stmt != null)stmt.close();
+				if(conn != null)conn.close(); 
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			
+			
+		}
+	
+	
+	
+	
+	
+	
+	}
+}

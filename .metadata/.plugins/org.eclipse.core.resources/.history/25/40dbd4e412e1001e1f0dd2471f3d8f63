@@ -1,0 +1,10 @@
+package edu.kh.jdbc1.model.vo;
+
+public class EmpPractice {
+	
+	private int empNo;
+	private String empName;
+	private int phone;
+	private int hireDate;
+	private int
+}

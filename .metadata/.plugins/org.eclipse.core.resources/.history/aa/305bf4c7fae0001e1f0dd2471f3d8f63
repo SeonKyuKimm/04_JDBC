@@ -1,0 +1,8 @@
+package edu.kh.jdbc1.model.vo;
+
+public class Emp1 {
+	
+	private String empName;
+	private String jobName;
+	private int salary;
+}

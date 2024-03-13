@@ -1,0 +1,54 @@
+package edu.kh.jdbc1;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class Practice1 {
+
+	public static void main(String[] args) {
+		
+		// 전지연 사원이 속해있는 부서원들을 조회하시오
+		// 사번 사원명 전화번호 고용일 부서명 
+	
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+	
+		try {
+			
+Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+			String url = "jdbc:oracle:thin:@localhost:1521:XE";
+			String user = "kh_ksk";
+			String pw ="kh1234";
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	
+	
+	
+	
+	
+	
+	}
+}

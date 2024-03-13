@@ -1,0 +1,10 @@
+package edu.kh.jdbc1.model.vo;
+
+public class EmpPractice {
+	
+	
+	private String category;
+	private String departmentName;
+	private int point;
+	
+}

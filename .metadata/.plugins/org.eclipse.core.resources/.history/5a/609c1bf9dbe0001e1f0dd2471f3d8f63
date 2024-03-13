@@ -1,0 +1,91 @@
+package edu.kh.jdbc1;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class JDBCExample1 {
+
+	public static void main(String[] args) {
+		
+		/* JDBC (Java DataBase Connectivity) : Java에서 DB에 연결할 수 있게 해주는 Java Programming API (Java에 기본 내장된 인터페이스)
+		 java.sql 페이지에서 제공한다.
+			
+		 JDBC를 이용한 어플리케이션 만들 때 필요한것
+		   1 . Java의 JDBC 관련 인터페이스
+		   2 . DBMS (Oracle)
+		   3 . Oracle에서 Java와 연결할 때 사용할 
+		 	   JDBC를 상속받아 구현할 클래스 모음 (ojdbc10.jar 라이브러리)
+		 */
+		
+		
+		// 1단계 : JDBC 객체 참조변수 선언 ( java.sql 패키지에 있는 인터페이스 )
+		
+		Connection conn = null;
+		// DB 연결정보를 담은 객체
+		// -> DBMS 타입, 이름, IP, Port, 계정명, 비밀번호 저장
+		// -> DBeaver의 계정 접속 방법과 유사하다
+		// * Java와 DB사이를 연결해주는 통로역할을 한다.
+		
+		Statement stmt = null;
+		// Connection 을 통해서 
+		// SQL문을 DB에 전달하여 실행하고(수행하고)
+		// 생성된 결과( ResultSet, INSERT , DELETE 등의 DML 성공한 행의 개수 )를 반환하는데 사용되는 객체
+		
+		
+		ResultSet rs = null;
+		// SELECT 질의 성공 시 반환되는데
+		// 조회 결과 집합을 나타내는 객체다
+		 
+		
+		try {
+			// 2단계 : 참조변수에 알맞은 객체 대입
+			
+			
+			// 1 . DB 연결에 필요한 Oracle JDBC Driver 메모리에 로드하기
+			// 런타임 시점에 해당 경로의 클래스를 동적으로 로드함
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			// -> () 안에 작성된 클래스의 객체를 반환
+			// -> 메모리에 객체가 생성되고 JDBC가 필요할 때 알아서 참조하여 사용하는 형태가 된다
+			// --> 생략해도 자동으로 메모리 로드가 진행이 됨( 웬만하면 명시적으로 작성하는걸 권장합니다 )
+			
+			
+			// 2 . 연결정보를 담은 Connection 생성 ( java <-> DB 통로 생성 )
+			// -> DriverManager 객체를 이용해서 Connection 객체를 만들어 얻어옴
+			
+			String type = "jdbc:oracle:thin:@"; // JDBC 드라이버 종류 알려줌 
+			String ip = "localhost"; // DB 서버 컴퓨터의 IP
+			// == 127.0.0.1 ( loop back ip ) == 본인 주소로 돌아오는 ip, 나중에 프로젝트 시에는 빈자리 컴퓨터를 서버로 쓸거임.
+			
+			String port = ":1521"; // 포트번호 . oracle 사용하는 포트의 번호 1521 기본값
+			
+			String sid =":XE"; // 디비 이름
+			
+			//jdbc:oracle:thin:@localhost:XE == url 이라고 부름
+			
+			String user = "kh_ksk"; // DB 안에서 사용자 계정
+			String pw = "kh1234"; // DB안에서 비밀번호
+					
+			// DriverManager : 메모리에 로드된 JDBC드라이버를 이용해서 
+							// Connection 객체를 만드는 역할
+			DriverManager.getConnection(type + ip + port + sid, user, pw );
+			
+			
+			// getConnecion이 전달하는것
+			
+			
+			
+			
+		}catch(ClassNotFoundException e) {
+			System.out.println("JDBC 드라이버 경로가 잘못 작성됨.");
+			
+			
+		}
+		
+		
+		
+		
+		
+	}
+}
