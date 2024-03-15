@@ -96,6 +96,7 @@ public class TestService {
 		return result;
 	}
 
+	
 	public int delete(int testNo) throws Exception {
 
 		Connection conn = getConnection();
