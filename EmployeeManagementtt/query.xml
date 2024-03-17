@@ -34,11 +34,18 @@
 
 	<!--updateEmployee -->
 	<entry key="updateEmployee">
-
+		UPDATE EMPLOYEE SET
+		EMAIL = ?, PHONE = ?, SALARY = ?
+		WHERE EMP_ID = ?
+			
 	</entry>
 
 	<!--deleteEmployee -->
 	<entry key="deleteEmployee">
-
+		DELETE FROM EMPLOYEE WHERE EMP_ID = ?
+		
 	</entry>
+	
+	
+	
 </properties>

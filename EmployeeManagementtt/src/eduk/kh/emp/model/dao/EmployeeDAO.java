@@ -191,4 +191,71 @@ public class EmployeeDAO {
 		return emp;
 	}
 
+	/** 사번이 일치하는 사원 정보 수정 DAO
+	 * @param conn
+	 * @param emp
+	 * @return result
+	 */
+	public int updateEmployee(Connection conn, Employee emp) throws Exception {
+
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("updateEmployee");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, emp.getEmail());
+			pstmt.setString(2, emp.getPhone());
+			pstmt.setInt(3, emp.getSalary());
+			pstmt.setInt(4, emp.getEmpId());
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+			
+			
+		}
+		
+	
+		return result;
+	}
+
+	
+	
+	/**  사번이 일치하는 사원 정보 삭제 DAO
+	 * @param conn
+	 * @param empId
+	 * @return result
+	 */
+	public int deleteEmployee(Connection conn, int empId) throws Exception {
+		
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("deleteEmployee");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, empId);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+	
+	
+	
+	
+	
+	
 }

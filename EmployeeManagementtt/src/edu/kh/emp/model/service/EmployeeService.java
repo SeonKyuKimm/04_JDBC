@@ -66,6 +66,66 @@ public class EmployeeService {
 		return emp;
 		
 	}
+
+	public int updateEmployee(Employee emp) throws Exception {
+		
+		Connection conn = getConnection();
+		
+		int result = dao.updateEmployee(conn, emp);
+		
+		if(result > 0 ) commit(conn);
+		else			rollback(conn);
+		
+		close(conn);
+		
+		
+		return result;
+	}
+
+	
+	/** 사번이 일치하는 사원 정보 삭제 서비스
+	 * @param empId
+	 * @return result
+	 */
+	public int deleteEmployee(int empId) throws Exception{
+
+		Connection conn = getConnection();
+		
+		int result = dao.deleteEmployee(conn, empId);
+		
+		if(result > 0) commit(conn);
+		else 		   rollback(conn);
+		
+		close(conn);
+		
+		
+		return result;
+	}
+	
+	
 	
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
