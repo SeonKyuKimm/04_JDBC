@@ -43,7 +43,7 @@
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="edu.kh.jdbc.common.JDBCTemplate"/>
     <fullyQualifiedTypeName name="edu.kh.jdbc.common.Session"/>
-    <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="edu.kh.jdbc.board.model.dto.Board"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
 </qualifiedTypeNameHistroy>

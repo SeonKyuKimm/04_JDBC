@@ -148,6 +148,39 @@ public class MemberDAO {
 		
 		return result;
 	}
+
+
+	/**  비밀번호 번경 SQL수행하는 DAO
+	 * @param conn
+	 * @param current
+	 * @param newPw1
+	 * @param memberNo
+	 * @return result
+	 */
+	public int updatePassword(Connection conn, String current, String newPw1, int memberNo) throws Exception {
+
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("updatePassword");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1,newPw1);
+			pstmt.setString(2, current);
+			pstmt.setInt(3, memberNo);
+			
+			result = pstmt.executeUpdate();
+			
+			
+		}finally {
+			
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	
 	

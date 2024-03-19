@@ -191,11 +191,55 @@ public class MemberView {
 		}
 	}
 	
+		
 	
 	/**
 	 * 비밀번호 변경 (240319 혼자해봐야함)
 	 */
 	public void updatePassword() {
+		System.out.println("\n====비밀번호 변경====\n");
+		
+		// 현재 비밀번호 입력
+		System.out.print("현재 비밀번호 : ");
+		String current = sc.next();
+		
+		String newPw1 = null;
+		
+		while(true) {
+			// 새 비밀번호 입력
+			System.out.print("새 비밀번호 : ");
+			newPw1 = sc.next();
+			
+			System.out.print("새 비밀번호 확인 : ");
+			String newPw2 = sc.next();
+		
+			// 같을 때 까지 무한반복 ( while )
+			if(newPw1.equals(newPw2)) {
+				break;
+			}
+			
+			// 아닐 때
+			System.out.println("\n***** 새 비밀번호가 일치하지 않습니다 *****\n");
+					
+		
+		}
+		
+		try {
+			// 서비스 호출 ( 현재 비밀번호, 새 비밀번호, 로그인한 회원의 번호 )
+			// int 형 
+			int result = service.updatePassword(current, newPw1, Session.loginMember.getMemberNo());
+			
+			if(result > 0) {
+				System.out.println("\n=== 비밀번호가 변경되었습니다 ===\n");
+			}else {
+				System.out.println("\n*** 현재 비밀번호가 일치하지 않습니다 ***\n");
+			}
+			
+		}catch(Exception e) {
+			System.out.println("\n*** 비밀번호 변경 중 예외 발생 ***\n");
+			e.printStackTrace();
+		}
+		
 		
 	}
 	
