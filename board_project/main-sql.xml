@@ -14,4 +14,15 @@
 		AND UNREGISTER_FL = 'N'
 	</entry>
 
+	<entry key ="idDuplicationCheck">
+		SELECT COUNT(*) FROM "MEMBER"
+		WHERE UNREGISTER_FL = 'N'
+		AND MEMBER_ID = ?
+	</entry>
+	
+	<entry key = "signUp">
+		INSERT INTO "MEMBER"
+		VALUES(SEQ_MEMBER_NO.NEXTVAL, ?, ?, ?, ?, DEFAULT, DEFAULT)
+	</entry>
+	
 </properties>

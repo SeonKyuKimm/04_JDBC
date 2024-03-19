@@ -97,6 +97,68 @@ public class MainDAO {
 		// 5 .  결과 반환	
 		return member;
 	}
+
+
+	/** 아이디 중복 검사 SQL 수행 DAO
+	 * @param conn
+	 * @param memberId
+	 * @return result
+	 */
+	public int idDuplicationCheck(Connection conn, String memberId) throws Exception {
+		
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("idDuplicationCheck");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+				
+			}
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+	
+		return result;
+	}
+
+
+	/** 회원 가입 SQL 수행 DAO (INSERT)
+	 * @param conn
+	 * @param member
+	 * @return result
+	 */
+	public int signUp(Connection conn, Member member) throws Exception {
+		
+		int result = 0; 
+		
+		try {
+			String sql = prop.getProperty("signUp");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			// ? (placeholder)에 값 세팅
+			pstmt.setString(1, member.getMemberId());
+			pstmt.setString(2, member.getMemberPw());
+			pstmt.setString(3, member.getMemberName());
+			pstmt.setString(4, member.getMemberGender());
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+			
+		}
+		
+		return result;
+	}
 	
 	
 	
