@@ -46,14 +46,12 @@ public class MainView {
 					input = sc.nextInt();
 					sc.nextLine(); //  입력버퍼 개행문자 제거
 					
-					switch(input) {
-					
-						case 1 : login(); break;
-						case 2 : //signUp(); break;
-						case 0 : System.out.println("\n===프로그램 종료\n");
-						default : System.out.println("\n===메뉴 번호만 입력해주세요===\n");
-														
-					}
+						switch(input) {
+							case 1 : login(); break;
+							case 2 : //signUp(); break;
+							case 0 : System.out.println("\n===프로그램 종료\n");
+							default : System.out.println("\n===메뉴 번호만 입력해주세요===\n");
+						}
 					
 				}else { // 로그인 O
 					
@@ -67,17 +65,15 @@ public class MainView {
 					input = sc.nextInt();
 					sc.nextLine(); //  입력버퍼 개행문자 제거
 					
-					switch(input) {
-						
-						case 1 : memberView.memberMenu(); break;
-						case 2 : boardView.boardMenu(); break;	
-						case 3 : System.out.println("\n=== 로그아웃되었습니다 ===\n");
-								 Session.loginMember = null;
-								 break;
-						case 0 : System.out.println("\n===프로그램 종료\n");
-						default : System.out.println("\n===메뉴 번호만 입력해주세요===\n");
-						
-					}
+						switch(input) {
+							case 1 : memberView.memberMenu(); break;
+							case 2 : boardView.boardMenu(); break;
+							case 3 : System.out.println("\n=== 로그아웃되었습니다 ===\n");
+									 Session.loginMember = null;
+									 break;
+							case 0 : System.out.println("\n===프로그램 종료\n");
+							default : System.out.println("\n===메뉴 번호만 입력해주세요===\n");
+						}
 					
 				}
 				
@@ -113,19 +109,18 @@ public class MainView {
 	
 		try {
 			// 로그인 서비스 호출
-			// -> 반환 받은 결과는 Session.loginMember();  에 저장한다
+			// -> 반환 받은 결과는 Session.loginMember(); 에 저장한다
 			Session.loginMember = service.login(memberId, memberPw);
-			
-			if(Session.loginMember == null) { // 로그인 실패
+
+			if (Session.loginMember == null) { // 로그인 실패
+
 				System.out.println("\n*** 아이디 / 비밀번호가 일치하지 않습니다. ***\n");
-			}else { // 로그인 성공
-				
-				 System.out.printf("\n====%s 님 환영합니다====\n",
-						 		   Session.loginMember.getMemberName() );
+			} else { // 로그인 성공
+
+				System.out.printf("\n====%s 님 환영합니다====\n", Session.loginMember.getMemberName());
 			}
-			
-			
-		}catch(Exception e){
+
+		} catch (Exception e) {
 			System.out.println("\n *** 로그인 중 예외 발생 ***\n");
 			e.printStackTrace();
 		}

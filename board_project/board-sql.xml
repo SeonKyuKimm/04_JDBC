@@ -33,5 +33,39 @@
 		WHERE BOARD_NO = ?
 	</entry>
 
+	<!-- 게시글 수정  -->
+	<entry key="updateBoard">
+		UPDATE "BOARD" SET
+		BOARD_TITLE = ?, BOARD_CONTENT =?
+		WHERE BOARD_NO = ?
+	</entry>
+	
+	<!-- 다음 게시글 번호 조회  -->
+	<entry key ="nextBoardNo">
+		SELECT SEQ_BOARD_NO.NEXTVAL
+		FROM DUAL
+	</entry>
+	
+	<!-- 게시글 추가  -->
+	<entry key="insertBoard">
+		INSERT INTO "BOARD"
+		VALUES(? , ? , ?, DEFAULT, DEFAULT, DEFAULT, ?)
+	</entry>
+	
+	<!-- 게시글 확인 -->
+	<entry key = "checkBoardNo">
+		SELECT COUNT(*)
+		FROM "BOARD"
+		WHERE BOARD_NO = ?
+		AND MEMBER_NO = ?
+	</entry>
+		
+	<!-- 게시글 삭제  -->
+	<entry key="deleteBoard">
+		UPDATE "BOARD" SET
+		DELETE_FL = 'Y'
+		WHERE BOARD_NO = ?
+	</entry>
+	
 
 </properties>
