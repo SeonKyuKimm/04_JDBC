@@ -45,9 +45,12 @@
     <fullyQualifiedTypeName name="java.util.InputMismatchException"/>
     <fullyQualifiedTypeName name="edu.kh.jdbc.view.CommentView"/>
     <fullyQualifiedTypeName name="edu.kh.jdbc.common.Session"/>
+<<<<<<< HEAD
     <fullyQualifiedTypeName name="edu.kh.jdbc.common.JDBCTemplate"/>
     <fullyQualifiedTypeName name="java.lang.StringBuffer"/>
     <fullyQualifiedTypeName name="javax.xml.crypto.dsig.spec.ExcC14NParameterSpec"/>
+=======
+>>>>>>> 2a4ad47197f2cbcbd6a08133d1e9f2ef6d1f6a19
     <fullyQualifiedTypeName name="edu.kh.jdbc.board.model.dto.Board"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
