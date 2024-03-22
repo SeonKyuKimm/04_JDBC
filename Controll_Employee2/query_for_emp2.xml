@@ -2,4 +2,15 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 <comment>query_for_emp2.xml file</comment>
+
+	<entry key="selectAll">
+	SELECT EMP_ID, EMP_NAME, EMP_NO, EMAIL, PHONE,
+	NVL(DEPT_TITLE, '부서없음') DEPT_TITLE, JOB_NAME, SALARY
+	FROM EMPLOYEE2
+	LEFT JOIN DEPARTMENT2 ON (DEPT_ID = DEPT_CODE)
+	JOIN JOB2 USING(JOB_CODE)
+	ORDER BY EMP_ID
+	</entry>
+
+
 </properties>

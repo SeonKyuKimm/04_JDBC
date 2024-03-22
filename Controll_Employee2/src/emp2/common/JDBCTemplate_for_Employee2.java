@@ -22,7 +22,7 @@ public class JDBCTemplate_for_Employee2 {
 				
 				Properties prop = new Properties();
 				
-				prop.loadFromXML(new FileInputStream("driver.xml"));
+				prop.loadFromXML(new FileInputStream("driver_emp2.xml"));
 				
 				String driver = prop.getProperty("driver");
 				String url = prop.getProperty("url");
