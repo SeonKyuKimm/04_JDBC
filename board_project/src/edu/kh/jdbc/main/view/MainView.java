@@ -38,6 +38,7 @@ public class MainView {
 					System.out.println("\n=====회원제 게시판 프로그램 =====\n");
 					System.out.println("1 . 로그인");
 					System.out.println("2 . 회원가입");
+					
 					System.out.println("0 . 프로그램 종료");
 
 					System.out.print("\n메뉴선택 : ");
@@ -45,14 +46,11 @@ public class MainView {
 					sc.nextLine(); // 입력버퍼 개행문자 제거
 
 					switch (input) {
-					case 1:
-						login();
-						break;
-					case 2: // signUp(); break;
-					case 0:
-						System.out.println("\n===프로그램 종료\n");
-					default:
-						System.out.println("\n===메뉴 번호만 입력해주세요===\n");
+					case 1 : login(); break;
+					case 2 : // signUp(); break;
+					case 0 : System.out.println("\n===프로그램 종료\n");
+					
+					default : System.out.println("\n===메뉴 번호만 입력해주세요===\n");
 					}
 
 				} else { // 로그인 O
@@ -226,5 +224,7 @@ public class MainView {
 		}
 
 	}
-
+	
+	
+	
 }

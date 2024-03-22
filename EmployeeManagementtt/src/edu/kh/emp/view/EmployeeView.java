@@ -38,25 +38,14 @@ public class EmployeeView {
 
 				switch (input) {
 
-				case 1:
-					selectAll();
-					break;
-				case 2:
-					insertEmployee();
-					break;
-				case 3:
-					selectEmpId();
-					break;
-				case 4:
-					updateEmployee();
-					break;
-				case 5: deleteEmployee(); break;
-				case 0:
-					System.out.println("프로그램을 종료합니다. . .");
-					break;
+				case 1 : selectAll(); break;
+				case 2 : insertEmployee(); break;
+				case 3 : selectEmpId(); break;
+				case 4 : updateEmployee(); break;
+				case 5 : deleteEmployee(); break;
+				case 0 : System.out.println("프로그램을 종료합니다. . ."); break;
 
-				default:
-					System.out.println("메뉴에 존재하는 번호만 입력하세요 -");
+				default: System.out.println("메뉴에 존재하는 번호만 입력하세요 -");
 				}
 
 			} catch (InputMismatchException e) {

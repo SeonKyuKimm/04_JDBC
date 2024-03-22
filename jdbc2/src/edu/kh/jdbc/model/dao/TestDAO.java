@@ -76,17 +76,17 @@ public class TestDAO {
 			result = pstmt.executeUpdate(); // DML 모두 수행, 반영된 '행의 개수'(INT)로 반환
 			
 			
-			////////////////////////////
-			//	 		차이점
-			// stmt = conn.createStatement();
-			// stmt.executeQuery(sql);
+			/*┌─────────────────────────────────────────────────┐
+			  │	 			차이점								│
+			  │	stmt = conn.createStatement();					│
+			  │	stmt.executeQuery(sql);							│
+			  │													│
+			  ├─────────────────────────────────────────────────┤
+			  │													│
+			  │	pstmt = conn.prepareStatement(sql);				│
+			  │	pstmt = executeUpdate();  // sql 다시 넣지 마라!│
+			  └─────────────────────────────────────────────────┘*/
 			
-			// -------------------------
-			
-			// pstmt = conn.prepareStatement(sql);
-			// pstmt = executeUpdate();  // sql 다시 넣지 마라!
-			
-			/////////////////////////////
 		}finally {
 			// 6 . 사용한 JDBC객체 자원 반환하기
 			JDBCTemplate.close(pstmt);
