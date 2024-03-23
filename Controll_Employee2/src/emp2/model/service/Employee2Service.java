@@ -21,4 +21,23 @@ public class Employee2Service {
 		close(conn);
 		return list;
 	}
+
+
+	/** 사원정보 추가
+	 * @param emp
+	 * @return 1 / 0
+	 */
+	public int insertEmployee(Employee2 emp) throws Exception {
+		
+		Connection conn = getConnection();
+		
+		int result = dao.insertEmployee(conn, emp);
+		
+		if(result > 0) commit(conn);
+		else		   rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
 }

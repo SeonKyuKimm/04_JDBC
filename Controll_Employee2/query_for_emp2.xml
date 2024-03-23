@@ -12,5 +12,9 @@
 	ORDER BY EMP_ID
 	</entry>
 
+	<entry key="insertEmployee">
+	INSERT INTO EMPLOYEE2 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?,
+		?, ?, SYSDATE, NULL, DEFAULT)
+	</entry>
 
 </properties>

@@ -5,6 +5,6 @@
 
 	<entry key="driver">oracle.jdbc.driver.OracleDriver</entry>
 	<entry key="url">jdbc:oracle:thin:@localhost:1521:XE</entry>
-	<entry key="user">board_project</entry>
-	<entry key="password">board1234</entry>
+	<entry key="user">kh_ksk</entry>
+	<entry key="password">kh1234</entry>
 </properties>

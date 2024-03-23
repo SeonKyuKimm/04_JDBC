@@ -73,6 +73,49 @@ public class Employee2DAO {
 		}
 		return list;
 	}
+
+	public int insertEmployee(Connection conn, Employee2 emp) throws Exception {
+		
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("insertEmployee");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			
+			pstmt.setInt(1, emp.getEmpId() );
+			
+			pstmt.setString(2, emp.getEmpName());
+			
+			pstmt.setString(3, emp.getEmpNo());
+			
+			pstmt.setString(4, emp.getEmail());
+			
+			pstmt.setString(5, emp.getPhone());
+			
+			pstmt.setString(6, emp.getDeptCode());
+			
+			pstmt.setString(7, emp.getJobCode());
+			
+			pstmt.setString(8, emp.getSalLevel());
+			
+			pstmt.setInt(9, emp.getSalary());
+			
+			pstmt.setDouble(10, emp.getBonus());
+			
+			pstmt.setInt(11, emp.getManagerId());
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	
 	
