@@ -16,5 +16,25 @@
 	INSERT INTO EMPLOYEE2 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?,
 		?, ?, SYSDATE, NULL, DEFAULT)
 	</entry>
+	
+	<entry key="selectEmpId">
+		SELECT EMP_ID, EMP_NAME, EMP_NO, EMAIL, PHONE,
+		NVL(DEPT_TITLE,'부서없음') DEPT_TITLE, JOB_NAME, SALARY
+		FROM EMPLOYEE2
+		LEFT JOIN DEPARTMENT2 ON ( DEPT_ID = DEPT_CODE)
+		JOIN JOB2 USING(JOB_CODE)
+		WHERE EMP_ID = ?
+	</entry>
 
+	<entry key="updateEmployee">
+		UPDATE EMPLOYEE2 SET
+		EMAIL = ?, PHONE = ?, SALARY = ?
+		WHERE EMP_ID = ?	
+	</entry>
+	
+	<entry key="deleteEmployee">
+		DELETE FROM EMPLOYEE2 WHERE EMP_ID = ?
+	</entry>
+	
+	
 </properties>

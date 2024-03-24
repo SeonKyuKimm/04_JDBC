@@ -116,6 +116,111 @@ public class Employee2DAO {
 		
 		return result;
 	}
+
+	/** 일치하는 사원 한명의 조회...
+	 * @param conn
+	 * @param empId
+	 * @return
+	 */
+	public Employee2 selectEmpId(Connection conn, int empId) throws Exception {
+		
+		Employee2 emp = null;
+		
+		try {
+			
+			String sql = prop.getProperty("selectEmpId");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, empId);
+			rs = pstmt.executeQuery();
+					
+			if(rs.next()) {
+				
+				String empName = rs.getString("EMP_NAME");
+				String empNo = rs.getString("EMP_NO");
+				String email = rs.getString("EMAIL");
+				String phone = rs.getString("PHONE");
+				String departmentTitle = rs.getString("DEPT_TITLE");
+				String jobName = rs.getString("JOB_NAME");
+				int salary = rs.getInt("SALARY");
+				
+				emp = new Employee2(empId, empName, empNo, email, phone, departmentTitle, jobName, salary);
+				
+			}
+		}finally {
+			close(rs);
+			close(pstmt);
+			
+		}
+	
+		return emp;
+	}
+
+	
+	
+	
+	
+	/** 사번이 일치하는 사원 정보 수정 DAO ( DB랑 연결~)
+	 * @param conn
+	 * @param emp
+	 * @return result
+	 */
+	public int updateEmployee(Connection conn, Employee2 emp) throws Exception{
+		
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("updateEmployee");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, emp.getEmail());
+			pstmt.setString(2, emp.getPhone());
+			pstmt.setInt(3, emp.getSalary());
+			pstmt.setInt(4, emp.getEmpId());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		}finally {
+			close(pstmt);
+		}
+	
+		return result;
+	}
+
+	
+	
+	/** 사번이 일치하는 사원 정보 삭제 DAO
+	 * @param conn
+	 * @param empId
+	 * @return result
+	 */
+	public int deleteEmployee(Connection conn, int empId) throws Exception{
+		
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("deleteEmployee");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, empId);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			
+			close(pstmt);
+			
+		}
+		
+		return result;
+	}
+	
 	
 	
 	

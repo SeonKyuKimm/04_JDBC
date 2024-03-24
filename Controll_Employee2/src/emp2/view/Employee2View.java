@@ -49,9 +49,9 @@ public class Employee2View {
 				
 				case 1 : selectAll(); break;
 				case 2 : insertEmployee(); break;
-				case 3 : //selectEmpId(); break;
-				case 4 : //updateEmployee(); break; 
-				case 5 : //deleteEmployee(); break;
+				case 3 : selectEmpId(); break;
+				case 4 : updateEmployee(); break; 
+				case 5 : deleteEmployee(); break;
 				case 0 : 
 					System.out.println("┌───────────────────────┐");
 					System.out.println("│ 프로그램을 종료합니다 │"); 
@@ -170,11 +170,108 @@ public class Employee2View {
 		
 	}
 	
+	public void selectEmpId() throws Exception {
+		
+		System.out.println("    ┌────────────────────────────────────────┐");
+		System.out.println("    │ *** 사번이 일치하는 사원 정보 조회 *** │");
+		System.out.println("    └────────────────────────────────────────┘");
+		System.out.println();
+		
+		int empId = inputEmpId();
+		
+		Employee2 emp = service.selectEmpId(empId); 
+		
+		printOne(emp);
+	}
 	
 	
+	/** 사번이 일치하는 사원 정보 수정 ( DML / Update )
+	 * @throws Exception
+	 */
+	public void updateEmployee() throws Exception {
+		
+		System.out.println("    ┌────────────────────────────────────┐");
+		System.out.println("    │ *** 사번 일치하는 사원정보 수정 ***│");
+		System.out.println("    └────────────────────────────────────┘");
+		System.out.println();
+		
+		int empId = inputEmpId(); // 작성해둔 inputEmpId 보조 메서드
+		
+		System.out.println("┌────────────┐");
+		System.out.println("│  이메일 :  │");
+		System.out.print("└────────────┘");
+		String email = sc.next();
+		
+		 System.out.println("┌────────────────────────┐");
+		 System.out.println("│  전화번호  (- 제외) :  │");
+		 System.out.print("└────────────────────────┘");
+		 String phone = sc.next();
+		 
+		 System.out.println("┌──────────┐");
+		 System.out.println("│ 급여 : 　│");
+		 System.out.print("└──────────┘");
+		 int salary = sc.nextInt();
+		 
+		 Employee2 emp = new Employee2();
+		 
+		 emp.setEmpId(empId);
+		 emp.setEmail(email);
+		 emp.setPhone(phone);
+		 emp.setSalary(salary);
 	
+		 int result = service.updateEmployee(emp);
+		 
+		 if( result > 0 ) {
+			 
+			 System.out.println("┌─────────────────────────────┐");
+			 System.out.println("│ 사원 정보가 수정되었습니다  │");
+			 System.out.println("└─────────────────────────────┘");
+			 
+		 }else {
+			 
+			 System.out.println("┌────────────────────────────────────────────┐");
+			 System.out.println("│ 사번이 일치하는 직원이 존재하지 않습니다.  │");
+			 System.out.println("└────────────────────────────────────────────┘");
+			 
+		 }
+		 
+	}
 	
-	
+	public void deleteEmployee() throws Exception{
+		
+		System.out.println("┌────────────────────────────────────┐");
+		System.out.println("│ 　　사번 일치하는 사원정보 삭제　　│");
+		System.out.println("└────────────────────────────────────┘");
+		
+		int empId = inputEmpId();
+		
+		System.out.println("┌─────────────────────────────────────┐");
+		System.out.println("│  정말 삭제하시겠습니까 ? ( Y / N )  │");
+		System.out.print("└─────────────────────────────────────┘");
+		
+		char input = sc.next().toUpperCase().charAt(0);
+		
+		if( input == 'Y' ){
+			
+			int result = service.deleteEmployee(empId);
+			
+			if( result > 0 ) {
+				System.out.println("┌───────────────────┐");
+				System.out.println("│  삭제되었습니다.  │");
+				System.out.println("└───────────────────┘");
+			}else {
+				System.out.println("┌─────────────────────────────────────────────┐");
+				System.out.println("│  사번이 일치하는 사원이 존재하지 않습니다.  │");
+				System.out.println("└─────────────────────────────────────────────┘");
+			}
+			
+		}else {
+			System.out.println("┌───────────────────┐");
+			System.out.println("│  취소되었습니다.  │");
+			System.out.println("└───────────────────┘");
+		}
+		
+	}
 	
 	
 	
@@ -209,11 +306,11 @@ public class Employee2View {
 		if(empList.isEmpty()) {
 			System.out.println("조회된 사원 정보가 없습니다.");
 		}else{	
-			System.out.println("┌───────────────────────────────────────────────────────────────────────────────────────────────┐");
-			System.out.println("│ 사번 |   이름  | 주민등록번호  │        이메일         |  전화 번호  |  부서  | 직책 | 급여　 │ ");
-			System.out.println("├───────────────────────────────────────────────────────────────────────────────────────────────┤");
+			System.out.println(" ┌──────┬─────────┬────────────────┬───────────────────────┬─────────────┬────────┬──────┬────────┐");
+			System.out.println(" │ 사번 │   이름  │ 주민등록번호   │        이메일         │  전화 번호  │  부서  │ 직책 │ 급여　 │ ");
+			System.out.println(" ├──────┼─────────┼────────────────┼───────────────────────┼─────────────┼────────┼──────┼────────┤");
 			for (Employee2 emp : empList) {
-				System.out.printf("│ %2d  | %4s | %s | %15s | %s │ %s | %s | %d\n │", emp.getEmpId(), emp.getEmpName(),
+				System.out.printf(" │ %2d  │ %4s │ %s │ %15s       │ %s │ %s │ %s │ %d\n", emp.getEmpId(), emp.getEmpName(),
 						emp.getEmpNo(), emp.getEmail(), emp.getPhone(), emp.getDepartmentTitle(), emp.getJobName(),
 						emp.getSalary());
 				
@@ -222,6 +319,47 @@ public class Employee2View {
 		}
 		
 	}
+	
+	/** 사원 1명 정보 출력 보조메서드
+	 * @param emp
+	 */
+	public void printOne(Employee2 emp) {
+		
+		if(emp == null) {
+			System.out.println("┌───────────────────────────────┐");
+			System.out.println("│  조회된 사원 정보가 없습니다  │");
+			System.out.println("└───────────────────────────────┘");
+			
+		}else {
+			
+			System.out.println(
+					"┌───────────────────────────────────────────────────────────────────────────────────────────────┐");
+			System.out.println("│ 사번 │   이름  │ 주민 등록 번호 │        이메일       │   전화 번호  │  부서  │ 직책 │ 급여   │");
+			System.out.println(
+					"└───────────────────────────────────────────────────────────────────────────────────────────────┘");
+
+			System.out.printf("│ %2d  │ %4s │ %s │ %17s   │  %s │ %s │ %s │ %d│\n", emp.getEmpId(), emp.getEmpName(),
+					emp.getEmpNo(), emp.getEmail(), emp.getPhone(), emp.getDepartmentTitle(), emp.getJobName(),
+					emp.getSalary());
+			System.out.println(
+					"└───────────────────────────────────────────────────────────────────────────────────────────────┘");
+			
+		}
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
