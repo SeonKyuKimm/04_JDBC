@@ -214,8 +214,8 @@ public class BoardView {
 			}
 			
 			System.out.println("┌──────────────────────────────────────────────────────┐");
-			System.out.printf("글번호 : %d \n제목 : %s\n", board.getBoardNo(), board.getBoardTitle());
-			System.out.printf("작성자 : %s │ 작성일 : %s  \n조회수 : %d\n",
+			System.out.printf("│ 글번호 : %d  \n│ 제목 : %s\n", board.getBoardNo(), board.getBoardTitle());
+			System.out.printf("│ 작성자 : %s │ 작성일 : %s   \n│ 조회수 : %d\n",
 					board.getMemberName(), board.getCreateDate(), board.getReadCount());
 			System.out.println("├──────────────────────────────────────────────────────┤\n");
 			System.out.println("          " + board.getBoardContent() + " ");
